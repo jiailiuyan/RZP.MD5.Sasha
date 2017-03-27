@@ -11,14 +11,22 @@ namespace ConsoleApp
     {
         static void Main(string[] args)
         {
-            MD5 md5 = new MD5(MD5.StringToBytes("The quick brown fox jumps over the lazy dog"));
+            Console.Write("String: ");
+            string message = Console.ReadLine();
+            Console.Write("{0, 8}", "Bytes: ");
+            for (int i = 0; i < message.Length; ++i)
+            {
+                Console.Write("{0, 8:X} ", (byte)message[i]);
+            }
+            Console.WriteLine();
+            MD5 md5 = new MD5(MD5.StringToBytes(message));
             uint[] t = md5.GetHash();
+            Console.Write("MD5: ");
             for (int i = 0; i < t.Length; ++i)
             {
-                string s = string.Format("{0, 8:X} ", t[i]);
-                s = s.Replace(' ', '0');
-                Console.Write(s);
+                Console.Write(string.Format("{0:X}", t[i]).PadLeft(8, '0'));
             }
+            Console.WriteLine();
         }
     }
 }
