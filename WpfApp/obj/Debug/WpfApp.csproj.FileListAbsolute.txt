@@ -1,0 +1,38 @@
+C:\Users\lidre\OneDrive\RZP\RZP.MD5.Sasha\WpfApp\bin\Debug\WpfApp.exe.config
+C:\Users\lidre\OneDrive\RZP\RZP.MD5.Sasha\WpfApp\bin\Debug\WpfApp.exe
+C:\Users\lidre\OneDrive\RZP\RZP.MD5.Sasha\WpfApp\bin\Debug\WpfApp.pdb
+C:\Users\lidre\OneDrive\RZP\RZP.MD5.Sasha\WpfApp\obj\Debug\WpfApp.csprojResolveAssemblyReference.cache
+C:\Users\lidre\OneDrive\RZP\RZP.MD5.Sasha\WpfApp\obj\Debug\MainWindow.g.cs
+C:\Users\lidre\OneDrive\RZP\RZP.MD5.Sasha\WpfApp\obj\Debug\App.g.cs
+C:\Users\lidre\OneDrive\RZP\RZP.MD5.Sasha\WpfApp\obj\Debug\WpfApp_MarkupCompile.cache
+C:\Users\lidre\OneDrive\RZP\RZP.MD5.Sasha\WpfApp\obj\Debug\WpfApp_MarkupCompile.lref
+C:\Users\lidre\OneDrive\RZP\RZP.MD5.Sasha\WpfApp\obj\Debug\MainWindow.baml
+C:\Users\lidre\OneDrive\RZP\RZP.MD5.Sasha\WpfApp\obj\Debug\WpfApp.g.resources
+C:\Users\lidre\OneDrive\RZP\RZP.MD5.Sasha\WpfApp\obj\Debug\WpfApp.Properties.Resources.resources
+C:\Users\lidre\OneDrive\RZP\RZP.MD5.Sasha\WpfApp\obj\Debug\WpfApp.csproj.GenerateResource.Cache
+C:\Users\lidre\OneDrive\RZP\RZP.MD5.Sasha\WpfApp\obj\Debug\WpfApp.exe
+C:\Users\lidre\OneDrive\RZP\RZP.MD5.Sasha\WpfApp\obj\Debug\WpfApp.pdb
+C:\Users\lidre\OneDrive\RZP\RZP.MD5.Sasha\WpfApp\bin\Debug\CoreLib.dll
+C:\Users\lidre\OneDrive\RZP\RZP.MD5.Sasha\WpfApp\bin\Debug\CoreLib.pdb
+C:\Users\lidre\OneDrive\RZP\RZP.MD5.Sasha\WpfApp\bin\Debug\OxyPlot.dll
+C:\Users\lidre\OneDrive\RZP\RZP.MD5.Sasha\WpfApp\bin\Debug\OxyPlot.Wpf.dll
+C:\Users\lidre\OneDrive\RZP\RZP.MD5.Sasha\WpfApp\obj\Debug\WpfApp_Content.g.cs
+C:\Users\lidre\OneDrive\Разработка защищенных приложений\RZP.MD5.Sasha\WpfApp\bin\Debug\WpfApp.exe.config
+C:\Users\lidre\OneDrive\Разработка защищенных приложений\RZP.MD5.Sasha\WpfApp\bin\Debug\WpfApp.exe
+C:\Users\lidre\OneDrive\Разработка защищенных приложений\RZP.MD5.Sasha\WpfApp\bin\Debug\WpfApp.pdb
+C:\Users\lidre\OneDrive\Разработка защищенных приложений\RZP.MD5.Sasha\WpfApp\bin\Debug\CoreLib.dll
+C:\Users\lidre\OneDrive\Разработка защищенных приложений\RZP.MD5.Sasha\WpfApp\bin\Debug\OxyPlot.dll
+C:\Users\lidre\OneDrive\Разработка защищенных приложений\RZP.MD5.Sasha\WpfApp\bin\Debug\OxyPlot.Wpf.dll
+C:\Users\lidre\OneDrive\Разработка защищенных приложений\RZP.MD5.Sasha\WpfApp\bin\Debug\CoreLib.pdb
+C:\Users\lidre\OneDrive\Разработка защищенных приложений\RZP.MD5.Sasha\WpfApp\obj\Debug\WpfApp.csprojResolveAssemblyReference.cache
+C:\Users\lidre\OneDrive\Разработка защищенных приложений\RZP.MD5.Sasha\WpfApp\obj\Debug\MainWindow.g.cs
+C:\Users\lidre\OneDrive\Разработка защищенных приложений\RZP.MD5.Sasha\WpfApp\obj\Debug\App.g.cs
+C:\Users\lidre\OneDrive\Разработка защищенных приложений\RZP.MD5.Sasha\WpfApp\obj\Debug\WpfApp_Content.g.cs
+C:\Users\lidre\OneDrive\Разработка защищенных приложений\RZP.MD5.Sasha\WpfApp\obj\Debug\WpfApp_MarkupCompile.cache
+C:\Users\lidre\OneDrive\Разработка защищенных приложений\RZP.MD5.Sasha\WpfApp\obj\Debug\WpfApp_MarkupCompile.lref
+C:\Users\lidre\OneDrive\Разработка защищенных приложений\RZP.MD5.Sasha\WpfApp\obj\Debug\MainWindow.baml
+C:\Users\lidre\OneDrive\Разработка защищенных приложений\RZP.MD5.Sasha\WpfApp\obj\Debug\WpfApp.g.resources
+C:\Users\lidre\OneDrive\Разработка защищенных приложений\RZP.MD5.Sasha\WpfApp\obj\Debug\WpfApp.Properties.Resources.resources
+C:\Users\lidre\OneDrive\Разработка защищенных приложений\RZP.MD5.Sasha\WpfApp\obj\Debug\WpfApp.csproj.GenerateResource.Cache
+C:\Users\lidre\OneDrive\Разработка защищенных приложений\RZP.MD5.Sasha\WpfApp\obj\Debug\WpfApp.exe
+C:\Users\lidre\OneDrive\Разработка защищенных приложений\RZP.MD5.Sasha\WpfApp\obj\Debug\WpfApp.pdb

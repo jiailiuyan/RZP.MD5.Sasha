@@ -8,6 +8,8 @@ namespace CoreLib
 {
     public class MD5
     {
+        public List<string> rounds { get; } = new List<string>();
+
         public byte[] message;
 
         public MD5(byte[] message)
@@ -15,14 +17,19 @@ namespace CoreLib
             this.message = (byte[])message.Clone();
         }
 
-        public int b => message.Length;
+        public MD5(string message)
+        {
+            this.message = StringToBytes(message);
+        }
+
+        private int b => message.Length;
 
         uint[] X = new uint[0];
 
         public uint[] GetHash()
         {
             List<byte> extMessage = new List<byte>();
-            extMessage.AddRange(this.message);
+            extMessage.AddRange(message);
             extMessage.Add(128);
             while ((extMessage.Count * 8) % 512 != 448)
             {
@@ -54,27 +61,134 @@ namespace CoreLib
                     BB = B,
                     CC = C,
                     DD = D;
-
-                Round1(ref A, B, C, D, 0, 7, 1); Round1(ref D, A, B, C, 1, 12, 2); Round1(ref C, D, A, B, 2, 17, 3); Round1(ref B, C, D, A, 3, 22, 4);
-                Round1(ref A, B, C, D, 4, 7, 5); Round1(ref D, A, B, C, 5, 12, 6); Round1(ref C, D, A, B, 6, 17, 7); Round1(ref B, C, D, A, 7, 22, 8);
-                Round1(ref A, B, C, D, 8, 7, 9); Round1(ref D, A, B, C, 9, 12, 10); Round1(ref C, D, A, B, 10, 17, 11); Round1(ref B, C, D, A, 11, 22, 12);
-                Round1(ref A, B, C, D, 12, 7, 13); Round1(ref D, A, B, C, 13, 12, 14); Round1(ref C, D, A, B, 14, 17, 15); Round1(ref B, C, D, A, 15, 22, 16);
-
-                Round2(ref A, B, C, D, 1, 5, 17); Round2(ref D, A, B, C, 6, 9, 18); Round2(ref C, D, A, B, 11, 14, 19); Round2(ref B, C, D, A, 0, 20, 20);
-                Round2(ref A, B, C, D, 5, 5, 21); Round2(ref D, A, B, C, 10, 9, 22); Round2(ref C, D, A, B, 15, 14, 23); Round2(ref B, C, D, A, 4, 20, 24);
-                Round2(ref A, B, C, D, 9, 5, 25); Round2(ref D, A, B, C, 14, 9, 26); Round2(ref C, D, A, B, 3, 14, 27); Round2(ref B, C, D, A, 8, 20, 28);
-                Round2(ref A, B, C, D, 13, 5, 29); Round2(ref D, A, B, C, 2, 9, 30); Round2(ref C, D, A, B, 7, 14, 31); Round2(ref B, C, D, A, 12, 20, 32);
-
-                Round3(ref A, B, C, D, 5, 4, 33); Round3(ref D, A, B, C, 8, 11, 34); Round3(ref C, D, A, B, 11, 16, 35); Round3(ref B, C, D, A, 14, 23, 36);
-                Round3(ref A, B, C, D, 1, 4, 37); Round3(ref D, A, B, C, 4, 11, 38); Round3(ref C, D, A, B, 7, 16, 39); Round3(ref B, C, D, A, 10, 23, 40);
-                Round3(ref A, B, C, D, 13, 4, 41); Round3(ref D, A, B, C, 0, 11, 42); Round3(ref C, D, A, B, 3, 16, 43); Round3(ref B, C, D, A, 6, 23, 44);
-                Round3(ref A, B, C, D, 9, 4, 45); Round3(ref D, A, B, C, 12, 11, 46); Round3(ref C, D, A, B, 15, 16, 47); Round3(ref B, C, D, A, 2, 23, 48);
-
-                Round4(ref A, B, C, D, 0, 6, 49); Round4(ref D, A, B, C, 7, 10, 50); Round4(ref C, D, A, B, 14, 15, 51); Round4(ref B, C, D, A, 5, 21, 52);
-                Round4(ref A, B, C, D, 12, 6, 53); Round4(ref D, A, B, C, 3, 10, 54); Round4(ref C, D, A, B, 10, 15, 55); Round4(ref B, C, D, A, 1, 21, 56);
-                Round4(ref A, B, C, D, 8, 6, 57); Round4(ref D, A, B, C, 15, 10, 58); Round4(ref C, D, A, B, 6, 15, 59); Round4(ref B, C, D, A, 13, 21, 60);
-                Round4(ref A, B, C, D, 4, 6, 61); Round4(ref D, A, B, C, 11, 10, 62); Round4(ref C, D, A, B, 2, 15, 63); Round4(ref B, C, D, A, 9, 21, 64);
-
+                Round1(ref A, B, C, D, 0, 7, 1);
+                rounds.Add(Convert.ToString(A, 2).PadLeft(32, '0') + Convert.ToString(B, 2).PadLeft(32, '0') + Convert.ToString(C, 2).PadLeft(32, '0') + Convert.ToString(D, 2).PadLeft(32, '0'));
+                Round1(ref D, A, B, C, 1, 12, 2);
+                rounds.Add(Convert.ToString(A, 2).PadLeft(32, '0') + Convert.ToString(B, 2).PadLeft(32, '0') + Convert.ToString(C, 2).PadLeft(32, '0') + Convert.ToString(D, 2).PadLeft(32, '0'));
+                Round1(ref C, D, A, B, 2, 17, 3);
+                rounds.Add(Convert.ToString(A, 2).PadLeft(32, '0') + Convert.ToString(B, 2).PadLeft(32, '0') + Convert.ToString(C, 2).PadLeft(32, '0') + Convert.ToString(D, 2).PadLeft(32, '0'));
+                Round1(ref B, C, D, A, 3, 22, 4);
+                rounds.Add(Convert.ToString(A, 2).PadLeft(32, '0') + Convert.ToString(B, 2).PadLeft(32, '0') + Convert.ToString(C, 2).PadLeft(32, '0') + Convert.ToString(D, 2).PadLeft(32, '0'));
+                Round1(ref A, B, C, D, 4, 7, 5);
+                rounds.Add(Convert.ToString(A, 2).PadLeft(32, '0') + Convert.ToString(B, 2).PadLeft(32, '0') + Convert.ToString(C, 2).PadLeft(32, '0') + Convert.ToString(D, 2).PadLeft(32, '0'));
+                Round1(ref D, A, B, C, 5, 12, 6);
+                rounds.Add(Convert.ToString(A, 2).PadLeft(32, '0') + Convert.ToString(B, 2).PadLeft(32, '0') + Convert.ToString(C, 2).PadLeft(32, '0') + Convert.ToString(D, 2).PadLeft(32, '0'));
+                Round1(ref C, D, A, B, 6, 17, 7);
+                rounds.Add(Convert.ToString(A, 2).PadLeft(32, '0') + Convert.ToString(B, 2).PadLeft(32, '0') + Convert.ToString(C, 2).PadLeft(32, '0') + Convert.ToString(D, 2).PadLeft(32, '0'));
+                Round1(ref B, C, D, A, 7, 22, 8);
+                rounds.Add(Convert.ToString(A, 2).PadLeft(32, '0') + Convert.ToString(B, 2).PadLeft(32, '0') + Convert.ToString(C, 2).PadLeft(32, '0') + Convert.ToString(D, 2).PadLeft(32, '0'));
+                Round1(ref A, B, C, D, 8, 7, 9);
+                rounds.Add(Convert.ToString(A, 2).PadLeft(32, '0') + Convert.ToString(B, 2).PadLeft(32, '0') + Convert.ToString(C, 2).PadLeft(32, '0') + Convert.ToString(D, 2).PadLeft(32, '0'));
+                Round1(ref D, A, B, C, 9, 12, 10);
+                rounds.Add(Convert.ToString(A, 2).PadLeft(32, '0') + Convert.ToString(B, 2).PadLeft(32, '0') + Convert.ToString(C, 2).PadLeft(32, '0') + Convert.ToString(D, 2).PadLeft(32, '0'));
+                Round1(ref C, D, A, B, 10, 17, 11);
+                rounds.Add(Convert.ToString(A, 2).PadLeft(32, '0') + Convert.ToString(B, 2).PadLeft(32, '0') + Convert.ToString(C, 2).PadLeft(32, '0') + Convert.ToString(D, 2).PadLeft(32, '0'));
+                Round1(ref B, C, D, A, 11, 22, 12);
+                rounds.Add(Convert.ToString(A, 2).PadLeft(32, '0') + Convert.ToString(B, 2).PadLeft(32, '0') + Convert.ToString(C, 2).PadLeft(32, '0') + Convert.ToString(D, 2).PadLeft(32, '0'));
+                Round1(ref A, B, C, D, 12, 7, 13);
+                rounds.Add(Convert.ToString(A, 2).PadLeft(32, '0') + Convert.ToString(B, 2).PadLeft(32, '0') + Convert.ToString(C, 2).PadLeft(32, '0') + Convert.ToString(D, 2).PadLeft(32, '0'));
+                Round1(ref D, A, B, C, 13, 12, 14);
+                rounds.Add(Convert.ToString(A, 2).PadLeft(32, '0') + Convert.ToString(B, 2).PadLeft(32, '0') + Convert.ToString(C, 2).PadLeft(32, '0') + Convert.ToString(D, 2).PadLeft(32, '0'));
+                Round1(ref C, D, A, B, 14, 17, 15);
+                rounds.Add(Convert.ToString(A, 2).PadLeft(32, '0') + Convert.ToString(B, 2).PadLeft(32, '0') + Convert.ToString(C, 2).PadLeft(32, '0') + Convert.ToString(D, 2).PadLeft(32, '0'));
+                Round1(ref B, C, D, A, 15, 22, 16);
+                rounds.Add(Convert.ToString(A, 2).PadLeft(32, '0') + Convert.ToString(B, 2).PadLeft(32, '0') + Convert.ToString(C, 2).PadLeft(32, '0') + Convert.ToString(D, 2).PadLeft(32, '0'));
+                Round2(ref A, B, C, D, 1, 5, 17);
+                rounds.Add(Convert.ToString(A, 2).PadLeft(32, '0') + Convert.ToString(B, 2).PadLeft(32, '0') + Convert.ToString(C, 2).PadLeft(32, '0') + Convert.ToString(D, 2).PadLeft(32, '0'));
+                Round2(ref D, A, B, C, 6, 9, 18);
+                rounds.Add(Convert.ToString(A, 2).PadLeft(32, '0') + Convert.ToString(B, 2).PadLeft(32, '0') + Convert.ToString(C, 2).PadLeft(32, '0') + Convert.ToString(D, 2).PadLeft(32, '0'));
+                Round2(ref C, D, A, B, 11, 14, 19);
+                rounds.Add(Convert.ToString(A, 2).PadLeft(32, '0') + Convert.ToString(B, 2).PadLeft(32, '0') + Convert.ToString(C, 2).PadLeft(32, '0') + Convert.ToString(D, 2).PadLeft(32, '0'));
+                Round2(ref B, C, D, A, 0, 20, 20);
+                rounds.Add(Convert.ToString(A, 2).PadLeft(32, '0') + Convert.ToString(B, 2).PadLeft(32, '0') + Convert.ToString(C, 2).PadLeft(32, '0') + Convert.ToString(D, 2).PadLeft(32, '0'));
+                Round2(ref A, B, C, D, 5, 5, 21);
+                rounds.Add(Convert.ToString(A, 2).PadLeft(32, '0') + Convert.ToString(B, 2).PadLeft(32, '0') + Convert.ToString(C, 2).PadLeft(32, '0') + Convert.ToString(D, 2).PadLeft(32, '0'));
+                Round2(ref D, A, B, C, 10, 9, 22);
+                rounds.Add(Convert.ToString(A, 2).PadLeft(32, '0') + Convert.ToString(B, 2).PadLeft(32, '0') + Convert.ToString(C, 2).PadLeft(32, '0') + Convert.ToString(D, 2).PadLeft(32, '0'));
+                Round2(ref C, D, A, B, 15, 14, 23);
+                rounds.Add(Convert.ToString(A, 2).PadLeft(32, '0') + Convert.ToString(B, 2).PadLeft(32, '0') + Convert.ToString(C, 2).PadLeft(32, '0') + Convert.ToString(D, 2).PadLeft(32, '0'));
+                Round2(ref B, C, D, A, 4, 20, 24);
+                rounds.Add(Convert.ToString(A, 2).PadLeft(32, '0') + Convert.ToString(B, 2).PadLeft(32, '0') + Convert.ToString(C, 2).PadLeft(32, '0') + Convert.ToString(D, 2).PadLeft(32, '0'));
+                Round2(ref A, B, C, D, 9, 5, 25);
+                rounds.Add(Convert.ToString(A, 2).PadLeft(32, '0') + Convert.ToString(B, 2).PadLeft(32, '0') + Convert.ToString(C, 2).PadLeft(32, '0') + Convert.ToString(D, 2).PadLeft(32, '0'));
+                Round2(ref D, A, B, C, 14, 9, 26);
+                rounds.Add(Convert.ToString(A, 2).PadLeft(32, '0') + Convert.ToString(B, 2).PadLeft(32, '0') + Convert.ToString(C, 2).PadLeft(32, '0') + Convert.ToString(D, 2).PadLeft(32, '0'));
+                Round2(ref C, D, A, B, 3, 14, 27);
+                rounds.Add(Convert.ToString(A, 2).PadLeft(32, '0') + Convert.ToString(B, 2).PadLeft(32, '0') + Convert.ToString(C, 2).PadLeft(32, '0') + Convert.ToString(D, 2).PadLeft(32, '0'));
+                Round2(ref B, C, D, A, 8, 20, 28);
+                rounds.Add(Convert.ToString(A, 2).PadLeft(32, '0') + Convert.ToString(B, 2).PadLeft(32, '0') + Convert.ToString(C, 2).PadLeft(32, '0') + Convert.ToString(D, 2).PadLeft(32, '0'));
+                Round2(ref A, B, C, D, 13, 5, 29);
+                rounds.Add(Convert.ToString(A, 2).PadLeft(32, '0') + Convert.ToString(B, 2).PadLeft(32, '0') + Convert.ToString(C, 2).PadLeft(32, '0') + Convert.ToString(D, 2).PadLeft(32, '0'));
+                Round2(ref D, A, B, C, 2, 9, 30);
+                rounds.Add(Convert.ToString(A, 2).PadLeft(32, '0') + Convert.ToString(B, 2).PadLeft(32, '0') + Convert.ToString(C, 2).PadLeft(32, '0') + Convert.ToString(D, 2).PadLeft(32, '0'));
+                Round2(ref C, D, A, B, 7, 14, 31);
+                rounds.Add(Convert.ToString(A, 2).PadLeft(32, '0') + Convert.ToString(B, 2).PadLeft(32, '0') + Convert.ToString(C, 2).PadLeft(32, '0') + Convert.ToString(D, 2).PadLeft(32, '0'));
+                Round2(ref B, C, D, A, 12, 20, 32);
+                rounds.Add(Convert.ToString(A, 2).PadLeft(32, '0') + Convert.ToString(B, 2).PadLeft(32, '0') + Convert.ToString(C, 2).PadLeft(32, '0') + Convert.ToString(D, 2).PadLeft(32, '0'));
+                Round3(ref A, B, C, D, 5, 4, 33);
+                rounds.Add(Convert.ToString(A, 2).PadLeft(32, '0') + Convert.ToString(B, 2).PadLeft(32, '0') + Convert.ToString(C, 2).PadLeft(32, '0') + Convert.ToString(D, 2).PadLeft(32, '0'));
+                Round3(ref D, A, B, C, 8, 11, 34);
+                rounds.Add(Convert.ToString(A, 2).PadLeft(32, '0') + Convert.ToString(B, 2).PadLeft(32, '0') + Convert.ToString(C, 2).PadLeft(32, '0') + Convert.ToString(D, 2).PadLeft(32, '0'));
+                Round3(ref C, D, A, B, 11, 16, 35);
+                rounds.Add(Convert.ToString(A, 2).PadLeft(32, '0') + Convert.ToString(B, 2).PadLeft(32, '0') + Convert.ToString(C, 2).PadLeft(32, '0') + Convert.ToString(D, 2).PadLeft(32, '0'));
+                Round3(ref B, C, D, A, 14, 23, 36);
+                rounds.Add(Convert.ToString(A, 2).PadLeft(32, '0') + Convert.ToString(B, 2).PadLeft(32, '0') + Convert.ToString(C, 2).PadLeft(32, '0') + Convert.ToString(D, 2).PadLeft(32, '0'));
+                Round3(ref A, B, C, D, 1, 4, 37);
+                rounds.Add(Convert.ToString(A, 2).PadLeft(32, '0') + Convert.ToString(B, 2).PadLeft(32, '0') + Convert.ToString(C, 2).PadLeft(32, '0') + Convert.ToString(D, 2).PadLeft(32, '0'));
+                Round3(ref D, A, B, C, 4, 11, 38);
+                rounds.Add(Convert.ToString(A, 2).PadLeft(32, '0') + Convert.ToString(B, 2).PadLeft(32, '0') + Convert.ToString(C, 2).PadLeft(32, '0') + Convert.ToString(D, 2).PadLeft(32, '0'));
+                Round3(ref C, D, A, B, 7, 16, 39);
+                rounds.Add(Convert.ToString(A, 2).PadLeft(32, '0') + Convert.ToString(B, 2).PadLeft(32, '0') + Convert.ToString(C, 2).PadLeft(32, '0') + Convert.ToString(D, 2).PadLeft(32, '0'));
+                Round3(ref B, C, D, A, 10, 23, 40);
+                rounds.Add(Convert.ToString(A, 2).PadLeft(32, '0') + Convert.ToString(B, 2).PadLeft(32, '0') + Convert.ToString(C, 2).PadLeft(32, '0') + Convert.ToString(D, 2).PadLeft(32, '0'));
+                Round3(ref A, B, C, D, 13, 4, 41);
+                rounds.Add(Convert.ToString(A, 2).PadLeft(32, '0') + Convert.ToString(B, 2).PadLeft(32, '0') + Convert.ToString(C, 2).PadLeft(32, '0') + Convert.ToString(D, 2).PadLeft(32, '0'));
+                Round3(ref D, A, B, C, 0, 11, 42);
+                rounds.Add(Convert.ToString(A, 2).PadLeft(32, '0') + Convert.ToString(B, 2).PadLeft(32, '0') + Convert.ToString(C, 2).PadLeft(32, '0') + Convert.ToString(D, 2).PadLeft(32, '0'));
+                Round3(ref C, D, A, B, 3, 16, 43);
+                rounds.Add(Convert.ToString(A, 2).PadLeft(32, '0') + Convert.ToString(B, 2).PadLeft(32, '0') + Convert.ToString(C, 2).PadLeft(32, '0') + Convert.ToString(D, 2).PadLeft(32, '0'));
+                Round3(ref B, C, D, A, 6, 23, 44);
+                rounds.Add(Convert.ToString(A, 2).PadLeft(32, '0') + Convert.ToString(B, 2).PadLeft(32, '0') + Convert.ToString(C, 2).PadLeft(32, '0') + Convert.ToString(D, 2).PadLeft(32, '0'));
+                Round3(ref A, B, C, D, 9, 4, 45);
+                rounds.Add(Convert.ToString(A, 2).PadLeft(32, '0') + Convert.ToString(B, 2).PadLeft(32, '0') + Convert.ToString(C, 2).PadLeft(32, '0') + Convert.ToString(D, 2).PadLeft(32, '0'));
+                Round3(ref D, A, B, C, 12, 11, 46);
+                rounds.Add(Convert.ToString(A, 2).PadLeft(32, '0') + Convert.ToString(B, 2).PadLeft(32, '0') + Convert.ToString(C, 2).PadLeft(32, '0') + Convert.ToString(D, 2).PadLeft(32, '0'));
+                Round3(ref C, D, A, B, 15, 16, 47);
+                rounds.Add(Convert.ToString(A, 2).PadLeft(32, '0') + Convert.ToString(B, 2).PadLeft(32, '0') + Convert.ToString(C, 2).PadLeft(32, '0') + Convert.ToString(D, 2).PadLeft(32, '0'));
+                Round3(ref B, C, D, A, 2, 23, 48);
+                rounds.Add(Convert.ToString(A, 2).PadLeft(32, '0') + Convert.ToString(B, 2).PadLeft(32, '0') + Convert.ToString(C, 2).PadLeft(32, '0') + Convert.ToString(D, 2).PadLeft(32, '0'));
+                Round4(ref A, B, C, D, 0, 6, 49);
+                rounds.Add(Convert.ToString(A, 2).PadLeft(32, '0') + Convert.ToString(B, 2).PadLeft(32, '0') + Convert.ToString(C, 2).PadLeft(32, '0') + Convert.ToString(D, 2).PadLeft(32, '0'));
+                Round4(ref D, A, B, C, 7, 10, 50);
+                rounds.Add(Convert.ToString(A, 2).PadLeft(32, '0') + Convert.ToString(B, 2).PadLeft(32, '0') + Convert.ToString(C, 2).PadLeft(32, '0') + Convert.ToString(D, 2).PadLeft(32, '0'));
+                Round4(ref C, D, A, B, 14, 15, 51);
+                rounds.Add(Convert.ToString(A, 2).PadLeft(32, '0') + Convert.ToString(B, 2).PadLeft(32, '0') + Convert.ToString(C, 2).PadLeft(32, '0') + Convert.ToString(D, 2).PadLeft(32, '0'));
+                Round4(ref B, C, D, A, 5, 21, 52);
+                rounds.Add(Convert.ToString(A, 2).PadLeft(32, '0') + Convert.ToString(B, 2).PadLeft(32, '0') + Convert.ToString(C, 2).PadLeft(32, '0') + Convert.ToString(D, 2).PadLeft(32, '0'));
+                Round4(ref A, B, C, D, 12, 6, 53);
+                rounds.Add(Convert.ToString(A, 2).PadLeft(32, '0') + Convert.ToString(B, 2).PadLeft(32, '0') + Convert.ToString(C, 2).PadLeft(32, '0') + Convert.ToString(D, 2).PadLeft(32, '0'));
+                Round4(ref D, A, B, C, 3, 10, 54);
+                rounds.Add(Convert.ToString(A, 2).PadLeft(32, '0') + Convert.ToString(B, 2).PadLeft(32, '0') + Convert.ToString(C, 2).PadLeft(32, '0') + Convert.ToString(D, 2).PadLeft(32, '0'));
+                Round4(ref C, D, A, B, 10, 15, 55);
+                rounds.Add(Convert.ToString(A, 2).PadLeft(32, '0') + Convert.ToString(B, 2).PadLeft(32, '0') + Convert.ToString(C, 2).PadLeft(32, '0') + Convert.ToString(D, 2).PadLeft(32, '0'));
+                Round4(ref B, C, D, A, 1, 21, 56);
+                rounds.Add(Convert.ToString(A, 2).PadLeft(32, '0') + Convert.ToString(B, 2).PadLeft(32, '0') + Convert.ToString(C, 2).PadLeft(32, '0') + Convert.ToString(D, 2).PadLeft(32, '0'));
+                Round4(ref A, B, C, D, 8, 6, 57);
+                rounds.Add(Convert.ToString(A, 2).PadLeft(32, '0') + Convert.ToString(B, 2).PadLeft(32, '0') + Convert.ToString(C, 2).PadLeft(32, '0') + Convert.ToString(D, 2).PadLeft(32, '0'));
+                Round4(ref D, A, B, C, 15, 10, 58);
+                rounds.Add(Convert.ToString(A, 2).PadLeft(32, '0') + Convert.ToString(B, 2).PadLeft(32, '0') + Convert.ToString(C, 2).PadLeft(32, '0') + Convert.ToString(D, 2).PadLeft(32, '0'));
+                Round4(ref C, D, A, B, 6, 15, 59);
+                rounds.Add(Convert.ToString(A, 2).PadLeft(32, '0') + Convert.ToString(B, 2).PadLeft(32, '0') + Convert.ToString(C, 2).PadLeft(32, '0') + Convert.ToString(D, 2).PadLeft(32, '0'));
+                Round4(ref B, C, D, A, 13, 21, 60);
+                rounds.Add(Convert.ToString(A, 2).PadLeft(32, '0') + Convert.ToString(B, 2).PadLeft(32, '0') + Convert.ToString(C, 2).PadLeft(32, '0') + Convert.ToString(D, 2).PadLeft(32, '0'));
+                Round4(ref A, B, C, D, 4, 6, 61);
+                rounds.Add(Convert.ToString(A, 2).PadLeft(32, '0') + Convert.ToString(B, 2).PadLeft(32, '0') + Convert.ToString(C, 2).PadLeft(32, '0') + Convert.ToString(D, 2).PadLeft(32, '0'));
+                Round4(ref D, A, B, C, 11, 10, 62);
+                rounds.Add(Convert.ToString(A, 2).PadLeft(32, '0') + Convert.ToString(B, 2).PadLeft(32, '0') + Convert.ToString(C, 2).PadLeft(32, '0') + Convert.ToString(D, 2).PadLeft(32, '0'));
+                Round4(ref C, D, A, B, 2, 15, 63);
+                rounds.Add(Convert.ToString(A, 2).PadLeft(32, '0') + Convert.ToString(B, 2).PadLeft(32, '0') + Convert.ToString(C, 2).PadLeft(32, '0') + Convert.ToString(D, 2).PadLeft(32, '0'));
+                Round4(ref B, C, D, A, 9, 21, 64);
+                rounds.Add(Convert.ToString(A, 2).PadLeft(32, '0') + Convert.ToString(B, 2).PadLeft(32, '0') + Convert.ToString(C, 2).PadLeft(32, '0') + Convert.ToString(D, 2).PadLeft(32, '0'));
                 A += AA;
                 B += BB;
                 C += CC;
@@ -87,6 +201,19 @@ namespace CoreLib
             return new uint[] { A, B, C, D };
         }
 
+        public string GetStringHash()
+        {
+            uint[] t = GetHash();
+            string ans = "";
+            for (int i = 0; i < t.Length; ++i)
+            {
+                string s = string.Format("{0:X}", t[i]);
+                while (s.Length < 8) s = "0" + s;
+                ans += s;
+            }
+            return ans;
+        }
+
         private uint F(uint x, uint y, uint z) => (x & y) | (~x & z);
         private uint G(uint x, uint y, uint z) => (x & z) | (~z & y);
         private uint H(uint x, uint y, uint z) => x ^ y ^ z;
@@ -94,10 +221,22 @@ namespace CoreLib
 
         private uint ROTL(uint x, int c) => (x << c) | (x >> (32 - c));
 
-        private uint Round1(ref uint a, uint b, uint c, uint d, int k, int s, int i) => (a = b + (ROTL(a + F(b, c, d) + X[k] + T[i], s)));
-        private uint Round2(ref uint a, uint b, uint c, uint d, int k, int s, int i) => (a = b + (ROTL(a + G(b, c, d) + X[k] + T[i], s)));
-        private uint Round3(ref uint a, uint b, uint c, uint d, int k, int s, int i) => (a = b + (ROTL(a + H(b, c, d) + X[k] + T[i], s)));
-        private uint Round4(ref uint a, uint b, uint c, uint d, int k, int s, int i) => (a = b + (ROTL(a + I(b, c, d) + X[k] + T[i], s)));
+        private void Round1(ref uint a, uint b, uint c, uint d, int k, int s, int i)
+        {
+            a = b + (ROTL(a + F(b, c, d) + X[k] + T[i], s));
+        }
+        private void Round2(ref uint a, uint b, uint c, uint d, int k, int s, int i)
+        {
+            a = b + (ROTL(a + G(b, c, d) + X[k] + T[i], s));
+        }
+        private void Round3(ref uint a, uint b, uint c, uint d, int k, int s, int i)
+        {
+            a = b + (ROTL(a + H(b, c, d) + X[k] + T[i], s));
+        }
+        private void Round4(ref uint a, uint b, uint c, uint d, int k, int s, int i)
+        {
+            a = b + (ROTL(a + I(b, c, d) + X[k] + T[i], s));
+        }
 
         private readonly uint[] T = new uint[65]
         {
@@ -120,7 +259,7 @@ namespace CoreLib
             0xf7537e82, 0xbd3af235, 0x2ad7d2bb, 0xeb86d391
         };
 
-        public static byte[] StringToBytes(string str)
+        private byte[] StringToBytes(string str)
         {
             return str.Select(new Func<char, byte>((char c) => (byte)c)).ToArray();
         }

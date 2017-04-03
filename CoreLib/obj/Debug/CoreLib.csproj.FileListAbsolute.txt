@@ -1,0 +1,10 @@
+C:\Users\lidre\OneDrive\RZP\RZP.MD5.Sasha\CoreLib\bin\Debug\CoreLib.dll
+C:\Users\lidre\OneDrive\RZP\RZP.MD5.Sasha\CoreLib\bin\Debug\CoreLib.pdb
+C:\Users\lidre\OneDrive\RZP\RZP.MD5.Sasha\CoreLib\obj\Debug\CoreLib.csprojResolveAssemblyReference.cache
+C:\Users\lidre\OneDrive\RZP\RZP.MD5.Sasha\CoreLib\obj\Debug\CoreLib.dll
+C:\Users\lidre\OneDrive\RZP\RZP.MD5.Sasha\CoreLib\obj\Debug\CoreLib.pdb
+C:\Users\lidre\OneDrive\Разработка защищенных приложений\RZP.MD5.Sasha\CoreLib\bin\Debug\CoreLib.dll
+C:\Users\lidre\OneDrive\Разработка защищенных приложений\RZP.MD5.Sasha\CoreLib\bin\Debug\CoreLib.pdb
+C:\Users\lidre\OneDrive\Разработка защищенных приложений\RZP.MD5.Sasha\CoreLib\obj\Debug\CoreLib.csprojResolveAssemblyReference.cache
+C:\Users\lidre\OneDrive\Разработка защищенных приложений\RZP.MD5.Sasha\CoreLib\obj\Debug\CoreLib.dll
+C:\Users\lidre\OneDrive\Разработка защищенных приложений\RZP.MD5.Sasha\CoreLib\obj\Debug\CoreLib.pdb

@@ -1,0 +1,8 @@
+C:\Users\lidre\OneDrive\RZP\RZP.MD5.Sasha\ConsoleApp\bin\Debug\ConsoleApp.exe.config
+C:\Users\lidre\OneDrive\RZP\RZP.MD5.Sasha\ConsoleApp\bin\Debug\ConsoleApp.exe
+C:\Users\lidre\OneDrive\RZP\RZP.MD5.Sasha\ConsoleApp\bin\Debug\ConsoleApp.pdb
+C:\Users\lidre\OneDrive\RZP\RZP.MD5.Sasha\ConsoleApp\bin\Debug\CoreLib.dll
+C:\Users\lidre\OneDrive\RZP\RZP.MD5.Sasha\ConsoleApp\bin\Debug\CoreLib.pdb
+C:\Users\lidre\OneDrive\RZP\RZP.MD5.Sasha\ConsoleApp\obj\Debug\ConsoleApp.csprojResolveAssemblyReference.cache
+C:\Users\lidre\OneDrive\RZP\RZP.MD5.Sasha\ConsoleApp\obj\Debug\ConsoleApp.exe
+C:\Users\lidre\OneDrive\RZP\RZP.MD5.Sasha\ConsoleApp\obj\Debug\ConsoleApp.pdb

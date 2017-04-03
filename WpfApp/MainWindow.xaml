@@ -5,6 +5,122 @@
         xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
         xmlns:local="clr-namespace:WpfApp"
         mc:Ignorable="d"
-        Title="MainWindow" Height="350" Width="525">
-    <Grid/>
+        xmlns:oxyPlot="http://oxyplot.org/wpf"
+        Title="РЗП. Лабораторная работа №2. Толкина Александра" Height="600" Width="800">
+    <Grid>
+        <Grid.RowDefinitions>
+            <RowDefinition Height="Auto"/>
+            <RowDefinition Height="Auto"/>
+            <RowDefinition Height="*"/>
+        </Grid.RowDefinitions>
+        <GroupBox Header="Исходные данные" Margin="2">
+            <Grid>
+                <Grid.RowDefinitions>
+                    <RowDefinition Height="Auto"/>
+                    <RowDefinition Height="Auto"/>
+                </Grid.RowDefinitions>
+                <Grid Grid.Row="0">
+                    <Grid.ColumnDefinitions>
+                        <ColumnDefinition Width="Auto"/>
+                        <ColumnDefinition Width="*"/>
+                        <ColumnDefinition Width="Auto"/>
+                    </Grid.ColumnDefinitions>
+                    <TextBlock Grid.Column="0" Text="Путь к файлу исходных данных:" VerticalAlignment="Center" Padding="2"/>
+                    <TextBox Name="pathIn" Grid.Column="1" Margin="1" Padding="1" VerticalContentAlignment="Center" KeyDown="pathIn_KeyDown"/>
+                    <Button Name="openIn" Grid.Column="2" Content="Открыть" Margin="1" Padding="2" Click="openIn_Click"/>
+                </Grid>
+                <Grid Grid.Row="1">
+                    <Grid.RowDefinitions>
+                        <RowDefinition Height="Auto"/>
+                        <RowDefinition Height="Auto"/>
+                        <RowDefinition Height="Auto"/>
+                    </Grid.RowDefinitions>
+                    <TextBlock Grid.Row="0" Text="Текст исходных данных:" VerticalAlignment="Center" Padding="2"/>
+                    <TextBox Name="textIn" Grid.Row="1" Height="200" Margin="2" Padding="1" AcceptsReturn="True" ScrollViewer.VerticalScrollBarVisibility="Visible" TextChanged="textIn_TextChanged"/>
+                    <Grid Grid.Row="2">
+                        <Grid.ColumnDefinitions>
+                            <ColumnDefinition Width="*"/>
+                            <ColumnDefinition Width="*"/>
+                        </Grid.ColumnDefinitions>
+                        <Button Name="saveIn" Grid.Column="0" Content="Сохранить" Margin="1" Padding="2" Click="saveIn_Click"/>
+                        <Button Name="hashIn" Grid.Column="1" Content="Вычислить хэш" Margin="1" Padding="2" Click="hashIn_Click"/>
+                    </Grid>
+                </Grid>
+            </Grid>
+        </GroupBox>
+        <GroupBox Grid.Row="1" Header="Выходные данные" Margin="2">
+            <Grid>
+                <Grid.RowDefinitions>
+                    <RowDefinition Height="Auto"/>
+                    <RowDefinition Height="Auto"/>
+                </Grid.RowDefinitions>
+                <Grid Grid.Row="0">
+                    <Grid.ColumnDefinitions>
+                        <ColumnDefinition Width="Auto"/>
+                        <ColumnDefinition Width="*"/>
+                        <ColumnDefinition Width="Auto"/>
+                    </Grid.ColumnDefinitions>
+                    <TextBlock Grid.Column="0" Text="Путь к файлу с хэшем:" VerticalAlignment="Center" Padding="2"/>
+                    <TextBox Name="pathHash" Grid.Column="1" Margin="1" Padding="1" VerticalContentAlignment="Center" KeyDown="pathHash_KeyDown"/>
+                    <Button Name="openHash" Grid.Column="2" Content="Открыть" Margin="1" Padding="2" Click="openHash_Click"/>
+                </Grid>
+                <Grid Grid.Row="1">
+                    <Grid.ColumnDefinitions>
+                        <ColumnDefinition Width="Auto"/>
+                        <ColumnDefinition Width="*"/>
+                        <ColumnDefinition Width="Auto"/>
+                    </Grid.ColumnDefinitions>
+                    <TextBlock Grid.Column="0" Text="Хэш:" VerticalAlignment="Center" Padding="2"/>
+                    <TextBox Name="textHash" Grid.Column="1" Margin="1" Padding="1" VerticalContentAlignment="Center" FontFamily="Consolas"/>
+                    <Button Name="saveHash" Grid.Column="2" Content="Сохранить" Margin="1" Padding="2" Click="saveHash_Click"/>
+                </Grid>
+            </Grid>
+        </GroupBox>
+        <GroupBox Grid.Row="2" Header="Лавинный эффект" Margin="2">
+            <Grid>
+                <Grid.ColumnDefinitions>
+                    <ColumnDefinition Width="*"/>
+                    <ColumnDefinition Width="*"/>
+                </Grid.ColumnDefinitions>
+                <Grid Grid.Column="0" Margin="2">
+                    <Grid.RowDefinitions>
+                        <RowDefinition Height="*"/>
+                        <RowDefinition Height="Auto"/>
+                        <RowDefinition Height="*"/>
+                        <RowDefinition Height="Auto"/>
+                        <RowDefinition Height="*"/>
+                        <RowDefinition Height="Auto"/>
+                        <RowDefinition Height="*"/>
+                    </Grid.RowDefinitions>
+                    <Grid Grid.Row="1">
+                        <Grid.ColumnDefinitions>
+                            <ColumnDefinition Width="Auto"/>
+                            <ColumnDefinition Width="*"/>
+                            <ColumnDefinition Width="Auto"/>
+                        </Grid.ColumnDefinitions>
+                        <TextBlock Name="invBitTextBlock" Grid.Column="0" Text="Инвертировать бит с номером:" Margin="2" Padding="2" VerticalAlignment="Center" Visibility="Visible"/>
+                        <TextBox Name="invBitTextBox" Grid.Column="1" Margin="2" VerticalContentAlignment="Center" Visibility="Visible"/>
+                        <Button Name="invBitButton" Grid.Column="2" Margin="2,0,2,2" Content="Инвертировать" Visibility="Visible" Click="invBitButton_Click" VerticalAlignment="Bottom"/>
+                    </Grid>
+                    <Grid Grid.Row="3">
+                        <Grid.ColumnDefinitions>
+                            <ColumnDefinition Width="Auto"/>
+                            <ColumnDefinition Width="*"/>
+                        </Grid.ColumnDefinitions>
+                        <TextBlock Grid.Column="0" Text="Хэш №1:" Margin="2" Padding="2" VerticalAlignment="Center"/>
+                        <TextBox Name="hashGraphFirst" Grid.Column="1" Margin="2" VerticalContentAlignment="Center" FontFamily="Consolas"/>
+                    </Grid>
+                    <Grid Grid.Row="5">
+                        <Grid.ColumnDefinitions>
+                            <ColumnDefinition Width="Auto"/>
+                            <ColumnDefinition Width="*"/>
+                        </Grid.ColumnDefinitions>
+                        <TextBlock Grid.Column="0" Text="Хэш №2:" Margin="2" Padding="2" VerticalAlignment="Center"/>
+                        <TextBox Name="hashGraphSecond" Grid.Column="1" Margin="2" VerticalContentAlignment="Center" FontFamily="Consolas"/>
+                    </Grid>
+                </Grid>
+                <oxyPlot:PlotView Name="plotView" Grid.Column="1" Margin="2"/>
+            </Grid>
+        </GroupBox>
+    </Grid>
 </Window>
